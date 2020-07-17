@@ -3,12 +3,12 @@ package com.hong.util;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.*;
-import com.hong.config.OssConfig;
 import com.hong.entity.dto.UploadDto;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,22 +31,26 @@ public class AliyunOSSUtil {
     /**
      * bucketName的名字
      */
-    private static String bucketName = OssConfig.bucketName;
+    @Value("${aliyunoss.bucketName}")
+    private  String bucketName;
 
     /**
      * 访问地域节点
      */
-    private static String endpoint = OssConfig.endpoint;
+    @Value("${aliyunoss.endpoint}")
+    private  String endpoint = null;
 
     /**
      * 访问密钥
      */
-    private static String accessKeyId = OssConfig.accessKeyId;
+    @Value("${aliyunoss.accessKeyId}")
+    private  String accessKeyId = null;
 
     /**
      * 访问密钥密码
      */
-    private static String accessKeySecret = OssConfig.accessKeySecret;
+    @Value("${aliyunoss.accessKeySecret}")
+    private  String accessKeySecret = null;
 
     @Autowired
     UploadByPart uploadByPart;
